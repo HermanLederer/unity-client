@@ -12041,7 +12041,7 @@ PrefabInstance:
     - target: {fileID: 3182029656735705375, guid: 06e3f00655cc0bc9ea083405d2b228b5,
         type: 3}
       propertyPath: m_Name
-      value: Thumbstick
+      value: TouchscreenUI
       objectReference: {fileID: 0}
     - target: {fileID: 5051521744423234343, guid: 06e3f00655cc0bc9ea083405d2b228b5,
         type: 3}

@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5051521744423234343}
   - component: {fileID: 1467045256076589353}
   m_Layer: 5
-  m_Name: Thumbstick
+  m_Name: TouchscreenUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93ef847e1cf99417b1eda8866f3abda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Viewport: {fileID: 1636541836733245165}
 --- !u!1 &8352705655108073316
 GameObject:
   m_ObjectHideFlags: 0
