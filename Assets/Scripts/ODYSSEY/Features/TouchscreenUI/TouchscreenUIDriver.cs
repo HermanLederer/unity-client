@@ -35,7 +35,7 @@ public class TouchscreenUIDriver : MonoBehaviour, IRequiresContext, ITouchscreen
 
     #region Event Handlers
 
-    [ContextMenu("Toggle Minimap")]
+    [ContextMenu("Toggle TouchscreenUI")]
     private void OnToggleTouchscreenUI()
     {
         touchscreenUI.ToggleVisibility();
