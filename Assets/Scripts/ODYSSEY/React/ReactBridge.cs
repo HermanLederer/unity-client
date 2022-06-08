@@ -18,6 +18,7 @@ namespace Odyssey
         public Action<Vector3> TeleportToPosition_Event { get; set; }
         public Action<string> TeleportToUser_Event { get; set; }
         public Action ToggleMinimap_Event { get; set; }
+        public Action ToggleTouchscreenUI_Event { get; set; }
         public Action<bool> ControlKeyboard_Event { get; set; }
         public Action<Vector3, int> GoToWaypoint_Event { get; set; }
         public Action CancelGoToWaypoint_Event { get; set; }
@@ -43,6 +44,7 @@ namespace Odyssey
         public Action<Vector3> TeleportToPosition_Event { get; set; }
         public Action<string> TeleportToUser_Event { get; set; }
         public Action ToggleMinimap_Event { get; set; }
+        public Action ToggleTouchscreenUI_Event { get; set; }
         public Action<bool> ControlKeyboard_Event { get; set; }
         public Action<Vector3, int> GoToWaypoint_Event { get; set; }
         public Action CancelGoToWaypoint_Event { get; set; }
@@ -75,6 +77,11 @@ namespace Odyssey
         public void toggleMinimap()
         {
             ToggleMinimap_Event?.Invoke();
+        }
+
+        public void toggleTouchscreenUI()
+        {
+            ToggleTouchscreenUI_Event?.Invoke();
         }
 
         public void turnAllSoundOff()
