@@ -19,9 +19,4 @@ public class TouchscreenUI : MonoBehaviour
     {
         Viewport.gameObject.SetActive(visibility);
     }
-
-    public void ToggleVisibility()
-    {
-        SetVisibility(!Viewport.gameObject.activeSelf);
-    }
 }
