@@ -5453,6 +5453,7 @@ GameObject:
   - component: {fileID: 1835432974}
   - component: {fileID: 1835432961}
   - component: {fileID: 1835432962}
+  - component: {fileID: 1835432963}
   m_Layer: 0
   m_Name: Managers
   m_TagString: System
@@ -5552,6 +5553,19 @@ MonoBehaviour:
   activateInfoUIOnDistanceSq: 1200
   canHoverAtDistance: 1000
   infoUI: {fileID: 1049519676}
+--- !u!114 &1835432963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835432958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d772fdac6a7addfbca92a1cc0b7d9e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchscreenUI: {fileID: 2092616094}
 --- !u!114 &1835432964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11425,6 +11439,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072808721}
   m_CullTransparentMesh: 1
+--- !u!114 &2092616094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1467045256076589353, guid: 06e3f00655cc0bc9ea083405d2b228b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3182029658015637634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93ef847e1cf99417b1eda8866f3abda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2097949496
 MonoBehaviour:
   m_ObjectHideFlags: 0
