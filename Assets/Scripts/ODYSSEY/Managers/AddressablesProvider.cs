@@ -184,6 +184,8 @@ namespace Odyssey
                     return "WebGL";
                 case RuntimePlatform.OSXEditor:
                     return "StandaloneOSX";
+                case RuntimePlatform.Android:
+                    return "Android";
                 default:
                     return "StandaloneWindows64";
             }
