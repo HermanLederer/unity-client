@@ -187,7 +187,7 @@ namespace Odyssey
                 case RuntimePlatform.Android:
                     return "Android";
                 default:
-                    return "StandaloneWindows64";
+                    return "StandaloneLinux64";
             }
         }
 

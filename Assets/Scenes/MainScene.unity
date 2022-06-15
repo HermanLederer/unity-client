@@ -1461,7 +1461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &724999056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12069,6 +12069,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TouchscreenUI
       objectReference: {fileID: 0}
+    - target: {fileID: 5014686291855987638, guid: 06e3f00655cc0bc9ea083405d2b228b5,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5051521744423234343, guid: 06e3f00655cc0bc9ea083405d2b228b5,
         type: 3}
       propertyPath: m_RootOrder
@@ -12077,7 +12082,7 @@ PrefabInstance:
     - target: {fileID: 5051521744423234343, guid: 06e3f00655cc0bc9ea083405d2b228b5,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5051521744423234343, guid: 06e3f00655cc0bc9ea083405d2b228b5,
         type: 3}
@@ -12087,7 +12092,7 @@ PrefabInstance:
     - target: {fileID: 5051521744423234343, guid: 06e3f00655cc0bc9ea083405d2b228b5,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 360
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7853437114123835893, guid: 06e3f00655cc0bc9ea083405d2b228b5,
         type: 3}
