@@ -26,6 +26,7 @@ public class MinimapDriver : MonoBehaviour, IRequiresContext, IMinimapDriver
         _c.Get<ISpawner>().OnObjectSpawned += OnObjectSpwaned;
         _c.Get<ISpawner>().OnBeforeObjectDestroyed += OnBeforeObjectDestroyed;
         _c.Get<IReactBridge>().ToggleMinimap_Event += OnToggleMinimap;
+        _c.Get<IReactBridge>().ShowHideMinimap_Event += OnShowHideMinimap;
     }
 
 
@@ -39,6 +40,8 @@ public class MinimapDriver : MonoBehaviour, IRequiresContext, IMinimapDriver
         _c.Get<ISpawner>().OnObjectSpawned -= OnObjectSpwaned;
         _c.Get<ISpawner>().OnBeforeObjectDestroyed -= OnBeforeObjectDestroyed;
         _c.Get<IReactBridge>().ToggleMinimap_Event -= OnToggleMinimap;
+        _c.Get<IReactBridge>().ShowHideMinimap_Event -= OnShowHideMinimap;
+
     }
 
     public void Init(IMomentumContext context)
@@ -112,6 +115,11 @@ public class MinimapDriver : MonoBehaviour, IRequiresContext, IMinimapDriver
     private void OnToggleMinimap()
     {
         Minimap.ToggleVisibility();
+    }
+
+    private void OnShowHideMinimap(bool show)
+    {
+        Minimap.ShowHide(show);
     }
     #endregion
 
