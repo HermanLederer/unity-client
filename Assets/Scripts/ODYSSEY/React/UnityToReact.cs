@@ -15,7 +15,7 @@ public interface IUnityToReact
     public void SendWaypointReached(int waypointIndex);
 
     public void RelayNotificationSimple(int kind, int flag, string message);
-    public void RelayRelayMessage(string target,  string message);
+    public void RelayRelayMessage(string target, string message);
     public void SendPosBusConnected();
 
 }
@@ -67,8 +67,6 @@ public class UnityToReact : IUnityToReact
 
     [DllImport("__Internal")]
     private static extern void PosBusConnected();
-
-
 #endif
 
     public void SendMomentumLoadedToReact()
@@ -76,19 +74,40 @@ public class UnityToReact : IUnityToReact
 #if !UNITY_EDITOR && UNITY_WEBGL
         MomentumLoaded();
 #endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "MomentumLoaded");
     }
+#endif
+    }
+
     public void SendReadyToTeleportToReact()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         SendReadyForTeleport();
 #endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "SendReadyForTeleport");
     }
+#endif
+    }
+
     public void ExterminateUnity()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         SendExterminateUnityRequest();
 #endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "SendExterminateUnityRequest");
     }
+#endif
+    }
+
     public string GetGraphicCardFromBrowser()
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
@@ -106,24 +125,37 @@ public class UnityToReact : IUnityToReact
         return "Non WebGL Platform";
 #endif
     }
+
     public void SendTeamPlasmaClick(string teamID)
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
             // OddDebug.Log("TeamPlasmaClick sent " + teamID.ToString(), 2);
             TeamPlasmaClickEvent(teamID);
 #endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "TeamPlasmaClickEvent;" + teamID);
     }
+#endif
+    }
+
     public void SendClick(string guid, string label)
     {
         Debug.Log("Sending click: " + label + " to " + guid);
 #if !UNITY_EDITOR && UNITY_WEBGL
         SendClickEvent(label+"|"+guid);
 #endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "SendClickEvent;" + guid + ";" + label);
+    }
+#endif
     }
 
     public void SendProfileClickEvent(string userID, string position)
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
         string completeMessage = "";
         // OddDebug.Log("clicked on profile : " + userID, 3);
 
@@ -133,14 +165,28 @@ public class UnityToReact : IUnityToReact
         position = position.Replace(',', ':');
 
         completeMessage = userID + "|" + position;
-
+        
+#if !UNITY_EDITOR && UNITY_WEBGL
         ProfileClickEvent(completeMessage);        
 #endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "ProfileClickEvent;" + completeMessage);
     }
+#endif
+    }
+
     public void SendWaypointReached(int waypointIndex)
     {
 #if !UNITY_EDITOR && UNITY_WEBGL
         WaypointReached(waypointIndex);
+#endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "WaypointReached;" + waypointIndex);
+    }
 #endif
         Debug.Log("[UnityToReact] SendWaypointReached " + waypointIndex);
     }
@@ -151,13 +197,25 @@ public class UnityToReact : IUnityToReact
 #if !UNITY_EDITOR && UNITY_WEBGL
         SimpleNotification(kind, flag, message);
 #endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "RelayNotificationSimple;" + kind + ";" + flag + ";" + message);
     }
-    
-    public void RelayRelayMessage(string target,  string message)
+#endif
+    }
+
+    public void RelayRelayMessage(string target, string message)
     {
         Debug.Log("Relaying: " + target + " / " + message);
 #if !UNITY_EDITOR && UNITY_WEBGL
         RelayMessage(target, message);
+#endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "RelayMessage;" + target + ";" + message);
+    }
 #endif
     }
 
@@ -166,6 +224,12 @@ public class UnityToReact : IUnityToReact
         Debug.Log("[UnityToReact] PosBusConnected");
 #if !UNITY_EDITOR && UNITY_WEBGL
         PosBusConnected();
+#endif
+#if !UNITY_EDITOR && UNITY_ANDROID
+    using (AndroidJavaClass jc = new AndroidJavaClass("com.azesmwayreactnativeunity.ReactNativeUnityViewManager"))
+    {
+        jc.CallStatic("sendMessageToMobileApp", "PosBusConnected");
+    }
 #endif
     }
 }
