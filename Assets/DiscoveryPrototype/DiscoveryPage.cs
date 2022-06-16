@@ -47,7 +47,9 @@ public class DiscoveryPage : MonoBehaviour
         volume.weight = 1f;
         camRig.gameObject.SetActive(true);
         playerCam.gameObject.SetActive(false);
-
+        RenderSettings.fog = true;
+        RenderSettings.fogColor = new Color(0.07f, 0.07f, 0.07f);
+        RenderSettings.fogDensity = 0.1f;
     }
 
     [ContextMenu("CloseDiscoveryMode")]
@@ -58,5 +60,6 @@ public class DiscoveryPage : MonoBehaviour
         volume.weight = 0f;
         camRig.gameObject.SetActive(false);
         playerCam.gameObject.SetActive(true);
+        RenderSettings.fog = false;
     }
 }
