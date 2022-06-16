@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class CameraRig : MonoBehaviour
 {
@@ -10,7 +7,7 @@ public class CameraRig : MonoBehaviour
 
     private DiscoveryPage discovery;
 
-    [Range(0, 9)]
+    [Range(0f, 7.9f)]
     public float scroll = 0f;
 
     private void Awake()
@@ -29,15 +26,17 @@ public class CameraRig : MonoBehaviour
         OpenPage(cam2, cam2Page);
 
         // Set viewport rects and FOVs based on scroll
+        var fovPad = 0.1f;
+
         var bottom1 = Mathf.Max(0f, (scroll + 1f) % 2f - 1f);
         var height1 = Mathf.Min(1f, (scroll + 1f) % 2f);
         cam1.rect = new Rect(0, bottom1, 1, height1);
-        cam1.fieldOfView = 73.4f * Mathf.Abs((scroll % 2f) - 1f);
+        cam1.fieldOfView = 73.4f * (fovPad + (1f - fovPad) * Mathf.Abs((scroll % 2f) - 1f));
 
         var bottom2 = Mathf.Max(0f, scroll % 2f - 1f);
         var height2 = Mathf.Min(1f, scroll % 2f);
         cam2.rect = new Rect(0, bottom2, 1, height2);
-        cam2.fieldOfView = 73.4f * Mathf.Abs(((scroll + 1f) % 2f) - 1f);
+        cam2.fieldOfView = 73.4f * (fovPad + (1f - fovPad) * Mathf.Abs(((scroll + 1f) % 2f) - 1f));
     }
 
     private void OpenPage(Camera cam, int page)
