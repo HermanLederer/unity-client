@@ -18,8 +18,6 @@ public class CameraRig : MonoBehaviour
 
     private void Update()
     {
-        // scroll += Time.deltaTime * 0.2f;
-
         // Set camera positions
         int cam1Page = Mathf.FloorToInt(scroll * 0.5f + 0.5f) * 2;
         int cam2Page = Mathf.FloorToInt(scroll * 0.5f) * 2 + 1;
