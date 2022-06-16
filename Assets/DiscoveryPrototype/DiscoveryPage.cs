@@ -6,7 +6,8 @@ using UnityEngine.Rendering.Universal;
 
 public class DiscoveryPage : MonoBehaviour
 {
-    public Volume desaturationVolume;
+    public Volume volume;
+    public CameraRig camRig;
 
     private bool hacksInitialized = false;
     private GameObject player;
@@ -14,10 +15,13 @@ public class DiscoveryPage : MonoBehaviour
 
     public GameObject postLocationsGO;
     public List<Transform> postLocations = new List<Transform>();
-    private int page = 0;
+
+    public DiscoveryPageDriver Driver { get; set; }
 
     private void Awake()
     {
+        camRig.gameObject.SetActive(false);
+
         foreach (Transform child in postLocationsGO.transform)
         {
             postLocations.Add(child);
@@ -40,7 +44,8 @@ public class DiscoveryPage : MonoBehaviour
     {
         TryInitHacks();
 
-        desaturationVolume.weight = 1f;
+        volume.weight = 1f;
+        camRig.gameObject.SetActive(true);
         playerCam.gameObject.SetActive(false);
 
     }
@@ -50,7 +55,8 @@ public class DiscoveryPage : MonoBehaviour
     {
         TryInitHacks();
 
-        desaturationVolume.weight = 0f;
+        volume.weight = 0f;
+        camRig.gameObject.SetActive(false);
         playerCam.gameObject.SetActive(true);
     }
 }
