@@ -22,6 +22,7 @@ namespace Odyssey
         public Action<bool> ShowHideTouchscreenUI_Event { get; set; }
         public Action<bool> OpenCloseDiscoveryPage_Event { get; set; }
         public Action<float> SetDiscoveryPageScroll_Event { get; set; }
+        public Action<int> TeleportToDiscoveryPost_Event { get; set; }
         public Action<bool> ControlKeyboard_Event { get; set; }
         public Action<Vector3, int> GoToWaypoint_Event { get; set; }
         public Action CancelGoToWaypoint_Event { get; set; }
@@ -51,6 +52,7 @@ namespace Odyssey
         public Action<bool> ShowHideTouchscreenUI_Event { get; set; }
         public Action<bool> OpenCloseDiscoveryPage_Event { get; set; }
         public Action<float> SetDiscoveryPageScroll_Event { get; set; }
+        public Action<int> TeleportToDiscoveryPost_Event { get; set; }
         public Action<bool> ControlKeyboard_Event { get; set; }
         public Action<Vector3, int> GoToWaypoint_Event { get; set; }
         public Action CancelGoToWaypoint_Event { get; set; }
@@ -103,6 +105,11 @@ namespace Odyssey
         public void setDiscoveryPageScroll(string scroll)
         {
             SetDiscoveryPageScroll_Event?.Invoke(float.Parse(scroll));
+        }
+
+        public void teleportToDiscoveryPost(int index)
+        {
+            TeleportToDiscoveryPost_Event?.Invoke(index);
         }
 
         public void turnAllSoundOff()
