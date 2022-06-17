@@ -29,6 +29,14 @@ public class DiscoveryPage : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        renderFeatures.ForEach((feature) =>
+        {
+            feature.SetActive(false);
+        });
+    }
+
     private void TryInitHacks()
     {
         if (hacksInitialized) return;
@@ -49,8 +57,11 @@ public class DiscoveryPage : MonoBehaviour
         camRig.gameObject.SetActive(true);
         playerCam.gameObject.SetActive(false);
         RenderSettings.fog = true;
+        RenderSettings.fogMode = FogMode.Linear;
+        RenderSettings.fogStartDistance = 12;
+        RenderSettings.fogEndDistance = 48;
         RenderSettings.fogColor = new Color(0.07f, 0.07f, 0.07f);
-        RenderSettings.fogDensity = 0.1f;
+        RenderSettings.fogDensity = 0.03f;
         renderFeatures.ForEach((feature) =>
         {
             feature.SetActive(true);

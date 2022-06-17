@@ -1,11 +1,13 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class CameraRig : MonoBehaviour
 {
     public Camera cam1;
     public Camera cam2;
 
+    private UniversalAdditionalCameraData cam1URP;
+    private UniversalAdditionalCameraData cam2URP;
     private DiscoveryPage discovery;
 
     [Range(-1f, 9f)]
@@ -13,6 +15,8 @@ public class CameraRig : MonoBehaviour
 
     private void Awake()
     {
+        cam1URP = cam1.GetUniversalAdditionalCameraData();
+        cam2URP = cam2.GetUniversalAdditionalCameraData();
         discovery = gameObject.GetComponentInParent<DiscoveryPage>();
     }
 
@@ -21,8 +25,8 @@ public class CameraRig : MonoBehaviour
         // Set camera positions
         int cam1Page = Mathf.FloorToInt(scroll * 0.5f + 0.5f) * 2;
         int cam2Page = Mathf.FloorToInt(scroll * 0.5f) * 2 + 1;
-        OpenPage(cam1, cam1Page);
-        OpenPage(cam2, cam2Page);
+        OpenPage(cam1, cam1URP, cam1Page);
+        OpenPage(cam2, cam2URP, cam2Page);
 
         // Set viewport rects and FOVs based on scroll
         float pScroll = scroll + 1f; // padded scroll
@@ -40,14 +44,16 @@ public class CameraRig : MonoBehaviour
         cam2.fieldOfView = 73.4f * Mathf.Pow(Mathf.Abs((pScroll % 2f) - 1f), power);
     }
 
-    private void OpenPage(Camera cam, int page)
+    private void OpenPage(Camera cam, UniversalAdditionalCameraData camURP, int page)
     {
         if (page < 0 || page >= discovery.postLocations.Count)
         {
             cam.cullingMask = 0;
+            camURP.renderPostProcessing = false;
             return;
         }
 
+        camURP.renderPostProcessing = true;
         cam.cullingMask = ~0;
         var pos = discovery.postLocations[page].position;
         var rot = discovery.postLocations[page].rotation;
