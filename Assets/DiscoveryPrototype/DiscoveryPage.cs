@@ -8,6 +8,7 @@ public class DiscoveryPage : MonoBehaviour
 {
     public Volume volume;
     public CameraRig camRig;
+    public List<ScriptableRendererFeature> renderFeatures;
 
     private bool hacksInitialized = false;
     private GameObject player;
@@ -50,6 +51,10 @@ public class DiscoveryPage : MonoBehaviour
         RenderSettings.fog = true;
         RenderSettings.fogColor = new Color(0.07f, 0.07f, 0.07f);
         RenderSettings.fogDensity = 0.1f;
+        renderFeatures.ForEach((feature) =>
+        {
+            feature.SetActive(true);
+        });
     }
 
     [ContextMenu("CloseDiscoveryMode")]
@@ -61,5 +66,9 @@ public class DiscoveryPage : MonoBehaviour
         camRig.gameObject.SetActive(false);
         playerCam.gameObject.SetActive(true);
         RenderSettings.fog = false;
+        renderFeatures.ForEach((feature) =>
+        {
+            feature.SetActive(false);
+        });
     }
 }

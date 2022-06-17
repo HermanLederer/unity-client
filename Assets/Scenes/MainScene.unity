@@ -6941,6 +6941,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 1970577264}
   camRig: {fileID: 1549136782}
+  renderFeatures:
+  - {fileID: 1136120532561765568, guid: 8430a5b230914624588d56b3df226170, type: 2}
+  - {fileID: 4389192188596746843, guid: 8430a5b230914624588d56b3df226170, type: 2}
   postLocationsGO: {fileID: 1364607562}
   postLocations: []
 --- !u!1 &1882950405
