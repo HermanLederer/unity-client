@@ -107,9 +107,9 @@ namespace Odyssey
             SetDiscoveryPageScroll_Event?.Invoke(float.Parse(scroll));
         }
 
-        public void teleportToDiscoveryPost(int index)
+        public void teleportToDiscoveryPost(string index)
         {
-            TeleportToDiscoveryPost_Event?.Invoke(index);
+            TeleportToDiscoveryPost_Event?.Invoke(int.Parse(index));
         }
 
         public void turnAllSoundOff()
