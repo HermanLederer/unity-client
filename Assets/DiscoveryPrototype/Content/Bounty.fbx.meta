@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Chest
-    second: {fileID: 2100000, guid: 643dd307e95a7d02dba7a34c86810f51, type: 2}
+    second: {fileID: 2100000, guid: 5dae3522aab6302baa5aff790c1635b4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
