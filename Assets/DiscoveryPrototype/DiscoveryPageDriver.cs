@@ -13,12 +13,10 @@ public class DiscoveryPageDriver : MonoBehaviour, IRequiresContext, IDiscoveryPa
     [Header("References")]
     [SerializeField]
     DiscoveryPage discoveryPage;
-    ITeleportSystem teleport;
 
     void OnEnable()
     {
         discoveryPage.Driver = this;
-        teleport = _c.Get<ITeleportSystem>();
 
         _c.Get<IReactBridge>().OpenCloseDiscoveryPage_Event += OnOpenCloseDiscoveryPage;
         _c.Get<IReactBridge>().SetDiscoveryPageScroll_Event += OnSetDiscoveryPageScroll;
@@ -29,7 +27,6 @@ public class DiscoveryPageDriver : MonoBehaviour, IRequiresContext, IDiscoveryPa
     void OnDisable()
     {
         discoveryPage.Driver = null;
-        teleport = null;
 
         _c.Get<IReactBridge>().OpenCloseDiscoveryPage_Event -= OnOpenCloseDiscoveryPage;
         _c.Get<IReactBridge>().SetDiscoveryPageScroll_Event -= OnSetDiscoveryPageScroll;
@@ -57,7 +54,7 @@ public class DiscoveryPageDriver : MonoBehaviour, IRequiresContext, IDiscoveryPa
 
     private void OnTeleportToDiscoveryPost(int index)
     {
-       teleport.TeleportToPosition(discoveryPage.postLocations[index].position, null);
+          _c.Get<ITeleportSystem>().TeleportToPosition(discoveryPage.postLocations[index].position, null);
     }
 
     #endregion
