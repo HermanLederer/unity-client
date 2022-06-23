@@ -29,11 +29,6 @@ namespace Odyssey.Networking
         public void SendHandshake(string userToken, string userUUID, string sessionID, string URL = "");
     }
 
-    public enum SignalType : UInt32
-    {
-        DualConnection = 1
-    }
-
     public interface IPosBusMessage { }
 
     public class PosBusPosMsg : IPosBusMessage
@@ -127,7 +122,7 @@ namespace Odyssey.Networking
 
     public class PosBusSignalMsg : IPosBusMessage
     {
-        public SignalType signal;
+        public PosBusSignalType signal;
     }
 
     public struct DecorationMetadata
@@ -216,6 +211,15 @@ namespace Odyssey.Networking
         }
     }
 
+    public enum PosBusSignalType
+    {
+        None = 0,
+        DualConnection = 1, // Send from PosBus when we have another user connected with the same token
+        Ready = 2, // Send from Unity when we spawned the world
+        InvalidToken = 3, // Invald Token send on handshake
+        Spawn = 4 // Send from PosBus, when the initial batch of World data is sent
+    }
+
     public class PosBusRemoveStaticObjectsMsg : IPosBusMessage
     {
         public Guid[] objectIds;
@@ -270,6 +274,11 @@ namespace Odyssey.Networking
     {
         public Guid spaceID;
         public StringMetadata[] strings;
+    }
+
+    public class PosBusObjectDefinition : IPosBusMessage
+    {
+        public ObjectMetadata metadata;
     }
 
     public enum PosBusDisconnectError
@@ -506,7 +515,7 @@ namespace Odyssey.Networking
                 case PosBusAPI.Msg.Signal:
                     {
                         var m = new PosBusAPI.SignalMsg(message);
-                        var signalType = (SignalType)m.Signal();
+                        var signalType = (PosBusSignalType)m.Signal();
                         EnqueueMessage(new PosBusSignalMsg()
                         {
                             signal = signalType,
@@ -838,6 +847,27 @@ namespace Odyssey.Networking
                         });
                         break;
                     }
+                case API.Msg.ObjectDefinition:
+
+                    var objectDefinition = flatBuffMsg.Msg<API.ObjectDefinition>().Value;
+
+                    var objectMetadata = new ObjectMetadata();
+
+                    objectMetadata.name = objectDefinition.Name;
+                    objectMetadata.assetType = DeserializeID(objectDefinition.AssetType);
+                    objectMetadata.objectId = DeserializeID(objectDefinition.ObjectId);
+                    objectMetadata.parentId = DeserializeID(objectDefinition.ParentId);
+                    objectMetadata.position = new Vector3(objectDefinition.Position.Value.X, objectDefinition.Position.Value.Y, objectDefinition.Position.Value.Z);
+                    objectMetadata.isMinimap = objectDefinition.Minimap;
+                    objectMetadata.infoUIType = DeserializeID(objectDefinition.InfouiType);
+                    objectMetadata.tetheredToParent = objectDefinition.TetheredToParent;
+
+                    EnqueueMessage(new PosBusObjectDefinition()
+                    {
+                        metadata = objectMetadata
+                    });
+
+                    break;
                 default:
                     throw new UnityException("Received unknown flatbuffer message!");
             }
