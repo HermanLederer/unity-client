@@ -19,13 +19,13 @@ public class TouchscreenUIDriver : MonoBehaviour, IRequiresContext, ITouchscreen
     void OnEnable()
     {
         touchscreenUI.Driver = this;
-        _c.Get<IReactBridge>().ShowHideTouchscreenUI_Event += OnToggleTouchscreenUI;
+        _c.Get<IUnityJSAPI>().ShowHideTouchscreenUI_Event += OnToggleTouchscreenUI;
     }
 
     void OnDisable()
     {
         touchscreenUI.Driver = null;
-        _c.Get<IReactBridge>().ShowHideTouchscreenUI_Event -= OnToggleTouchscreenUI;
+        _c.Get<IUnityJSAPI>().ShowHideTouchscreenUI_Event -= OnToggleTouchscreenUI;
     }
 
     public void Init(IMomentumContext context)

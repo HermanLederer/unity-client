@@ -18,9 +18,9 @@ public class DiscoveryPageDriver : MonoBehaviour, IRequiresContext, IDiscoveryPa
     {
         discoveryPage.Driver = this;
 
-        _c.Get<IReactBridge>().OpenCloseDiscoveryPage_Event += OnOpenCloseDiscoveryPage;
-        _c.Get<IReactBridge>().SetDiscoveryPageScroll_Event += OnSetDiscoveryPageScroll;
-        _c.Get<IReactBridge>().TeleportToDiscoveryPost_Event += OnTeleportToDiscoveryPost;
+        _c.Get<IUnityJSAPI>().OpenCloseDiscoveryPage_Event += OnOpenCloseDiscoveryPage;
+        _c.Get<IUnityJSAPI>().SetDiscoveryPageScroll_Event += OnSetDiscoveryPageScroll;
+        _c.Get<IUnityJSAPI>().TeleportToDiscoveryPost_Event += OnTeleportToDiscoveryPost;
     }
 
 
@@ -28,9 +28,9 @@ public class DiscoveryPageDriver : MonoBehaviour, IRequiresContext, IDiscoveryPa
     {
         discoveryPage.Driver = null;
 
-        _c.Get<IReactBridge>().OpenCloseDiscoveryPage_Event -= OnOpenCloseDiscoveryPage;
-        _c.Get<IReactBridge>().SetDiscoveryPageScroll_Event -= OnSetDiscoveryPageScroll;
-        _c.Get<IReactBridge>().TeleportToDiscoveryPost_Event -= OnTeleportToDiscoveryPost;
+        _c.Get<IUnityJSAPI>().OpenCloseDiscoveryPage_Event -= OnOpenCloseDiscoveryPage;
+        _c.Get<IUnityJSAPI>().SetDiscoveryPageScroll_Event -= OnSetDiscoveryPageScroll;
+        _c.Get<IUnityJSAPI>().TeleportToDiscoveryPost_Event -= OnTeleportToDiscoveryPost;
 
     }
 
