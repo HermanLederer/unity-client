@@ -21,6 +21,11 @@ namespace Odyssey
         public Action<Vector3> TeleportToPosition_Event { get; set; }
         public Action<string> TeleportToUser_Event { get; set; }
         public Action ToggleMinimap_Event { get; set; }
+        public Action<bool> ShowHideMinimap_Event { get; set; }
+        public Action<bool> ShowHideTouchscreenUI_Event { get; set; }
+        public Action<bool> OpenCloseDiscoveryPage_Event { get; set; }
+        public Action<float> SetDiscoveryPageScroll_Event { get; set; }
+        public Action<int> TeleportToDiscoveryPost_Event { get; set; }
         public Action<bool> ControlKeyboard_Event { get; set; }
         public Action<Vector3, int> GoToWaypoint_Event { get; set; }
         public Action CancelGoToWaypoint_Event { get; set; }
@@ -41,6 +46,11 @@ namespace Odyssey
         public Action<Vector3> TeleportToPosition_Event { get; set; }
         public Action<string> TeleportToUser_Event { get; set; }
         public Action ToggleMinimap_Event { get; set; }
+        public Action<bool> ShowHideMinimap_Event { get; set; }
+        public Action<bool> ShowHideTouchscreenUI_Event { get; set; }
+        public Action<bool> OpenCloseDiscoveryPage_Event { get; set; }
+        public Action<float> SetDiscoveryPageScroll_Event { get; set; }
+        public Action<int> TeleportToDiscoveryPost_Event { get; set; }
         public Action<bool> ControlKeyboard_Event { get; set; }
         public Action<Vector3, int> GoToWaypoint_Event { get; set; }
         public Action CancelGoToWaypoint_Event { get; set; }
