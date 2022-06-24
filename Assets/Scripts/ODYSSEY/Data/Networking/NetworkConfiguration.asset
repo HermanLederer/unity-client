@@ -19,7 +19,7 @@ MonoBehaviour:
   rendermanURL: https://dev.odyssey.ninja/api/v3/render
   userEndpoint: https://dev.odyssey.ninja/api/v3/backend/users/profile
   apiEndpoint: https://dev.odyssey.ninja/api/v3
-  addressablesURL: http://192.168.178.73:1342/unity-assets
+  addressablesURL: http://localhost:1342/unity-assets
   useMockData: 0
   mockData: {fileID: 0}
   useMockAddressables: 0
